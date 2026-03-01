@@ -1,0 +1,64 @@
+
+body { font-family: 'Helvetica', sans-serif; margin: 0; background: #e2f2ff; }
+header { 
+    text-align: center;
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+    }
+h1 { text-transform: uppercase; letter-spacing: 4px;}
+
+/* The Magic: CSS Grid */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    /* gap: 20px; */
+}
+
+.art-card {
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.art-card:hover { transform: translateY(-5px); }
+
+.art-card img {
+    width: 100%;
+    height: 40rem;
+    object-fit: cover; /* Keeps aspect ratio clean */
+    display: block;
+}
+
+.info { padding: 15px; }
+.info h3 {
+    margin: 0; font-size: 1.1rem;
+    font-family: Helvetica, sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    font-family: Helvetica;
+    color: #353637;
+}
+
+.info p { color: #666; font-size: 0.9rem; margin-top: 5px; }
+
+.caption { color: #666;font-family: 'sofiapro'; font-size: 0.9rem; margin-top: 5px; }
+
+/* This class is added by Swup during the transition */
+.transition-fade {
+    transition: 0.4s;
+    opacity: 1;
+}
+
+/* The state of the page while it is hidden */
+html.is-animating .transition-fade {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+@font-face {
+    font-family: 'sofiapro';
+    src: url('/font/sofiapro-light.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}

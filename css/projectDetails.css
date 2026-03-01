@@ -1,0 +1,112 @@
+
+/* 1. Global Setup */
+body { 
+    font-family: 'sofiapro', sans-serif; 
+    margin: 0; 
+    padding: 0;
+    background-color: #fff;
+}
+
+/* 2. The Split Layout Container */
+.project-container {
+    display: flex;
+    min-height: 100vh;
+    padding-left: 5%;
+}
+
+/* 3. The Sticky Left Side */
+.project-info {
+    flex: 0 0 40%; /* Takes up 40% of the width */
+    padding: 60px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+}
+
+.project-info h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    font-family: Helvetica;
+    color: #353637;
+}
+
+.project-info .description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #444;
+    font-family: 'sofiapro', sans-serif;
+    font-size: 0.9rem;
+}
+
+/* 4. The Scrolling Right Side */
+.project-gallery {
+    flex: 1; /* Takes up the remaining space */
+    padding-top: 4%;
+    padding-left: 2%;
+    background-color: #fcfcfc;
+}
+
+.art-item {
+    margin-bottom: 80px;
+    text-align: left;
+}
+
+.art-item img {
+    width: 60%;
+    height: auto;
+    display: block;
+    margin-bottom: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.caption {
+    font-style: italic;
+    color: #777;
+    font-size: 0.9rem;
+}
+
+.back-link {
+    text-decoration: none;
+    color: #999;
+    margin-bottom: 40px;
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+/* This class is added by Swup during the transition */
+.transition-fade {
+    transition: 0.4s;
+    opacity: 1;
+}
+
+/* The state of the page while it is hidden */
+html.is-animating .transition-fade {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+@font-face {
+    font-family: 'sofiapro';
+    src: url('/font/sofiapro-light.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Mobile Responsive: Stack them on top of each other */
+@media (max-width: 900px) {
+    .project-container { flex-direction: column; }
+    .project-info { 
+        position: relative; 
+        width: 100%; 
+        height: auto; 
+        padding: 40px 20px;
+    }
+    .project-gallery { padding: 20px; }
+}
