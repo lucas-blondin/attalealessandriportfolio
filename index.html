@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artist Portfolio</title>
+    <title>Attale Alessandri</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -16,7 +16,7 @@
     <div class="page-home-bg">
         <header>
             <h1 class="title">Attale Alessandri</h1>
-            <p>Selected Works</p>
+            <a href="contact.html" class="contact-nav-link">Contact</a>
         </header>
 
             <div class="portfolio-grid">
@@ -61,9 +61,11 @@
         </div>
     </main>
 
+<script src="/js/images.js"></script>
 <script src="https://unpkg.com/swup@4"></script>
 <script>
   const swup = new Swup();
+  swup.hooks.on('page:view', initImages);
 </script>
 
 </body>

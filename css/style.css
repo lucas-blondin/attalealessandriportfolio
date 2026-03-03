@@ -29,7 +29,11 @@ h1 { text-transform: uppercase; letter-spacing: 4px;}
     height: 40rem;
     object-fit: cover; /* Keeps aspect ratio clean */
     display: block;
+    opacity: 0;
+    transition: opacity 0.6s ease;
 }
+
+.art-card img.img-loaded { opacity: 1; }
 
 .info { padding: 15px; }
 .info h3 {
@@ -78,6 +82,8 @@ body {
     display: flex;
     min-height: 100vh;
     padding-left: 5%;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 /* 3. The Sticky Left Side */
@@ -114,22 +120,28 @@ body {
 .project-gallery {
     flex: 1; /* Takes up the remaining space */
     padding-top: 4%;
-    padding-left: 2%;
+    padding-left: 4%;
+    padding-right: 4%;
     background-color: #fcfcfc;
 }
 
 .art-item {
     margin-bottom: 80px;
-    text-align: left;
+    text-align: center;
 }
 
 .art-item img {
     width: 60%;
     height: auto;
     display: block;
+    margin: 0 auto;
     margin-bottom: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    opacity: 0;
+    transition: opacity 0.6s ease;
 }
+
+.art-item img.img-loaded { opacity: 1; }
 
 .caption {
     font-style: italic;
@@ -161,12 +173,121 @@ html.is-animating .transition-fade {
 
 /* Mobile Responsive: Stack them on top of each other */
 @media (max-width: 900px) {
-    .project-container { flex-direction: column; }
+    .project-container {
+        flex-direction: column;
+        padding-left: 0;
+    }
     .project-info { 
         position: relative; 
-        width: 100%; 
+        width: 100%;
+        box-sizing: border-box;
         height: auto; 
         padding: 40px 20px;
     }
-    .project-gallery { padding: 20px; }
+    .project-gallery {
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    .art-item {
+        text-align: center;
+    }
+    .art-item img {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Contact page ── */
+.contact-nav-link {
+    display: inline-block;
+    text-decoration: none;
+    color: #999;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+    transition: color 0.2s;
+}
+.contact-nav-link:hover { color: #353637; }
+
+.contact-container {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 5%;
+    box-sizing: border-box;
+    gap: 8%;
+}
+
+.contact-info {
+    flex: 0 0 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.contact-info h1 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    font-family: Helvetica;
+    color: #353637;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.contact-bio {
+    font-family: 'sofiapro', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #555;
+    margin: 0;
+}
+
+.instagram-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #353637;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: opacity 0.2s;
+}
+.instagram-link:hover { opacity: 0.6; }
+
+.contact-photo {
+    flex: 1;
+}
+
+.portrait-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+.portrait-img.img-loaded { opacity: 1; }
+
+@media (max-width: 900px) {
+    .contact-container {
+        flex-direction: column-reverse;
+        padding: 40px 20px;
+        gap: 40px;
+        align-items: flex-start;
+    }
+    .contact-info {
+        flex: none;
+        width: 100%;
+    }
+    .contact-photo {
+        width: 100%;
+    }
 }
