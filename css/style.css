@@ -214,6 +214,9 @@ html.is-animating .transition-fade {
     justify-content: center;
     gap: 0.6rem;
 }
+.header-brand .title {
+    margin: 0;
+}
 .header-logo {
     height: 1.8rem;
     width: auto;
@@ -223,25 +226,25 @@ html.is-animating .transition-fade {
     opacity: 1 !important;
 }
 
-/* ── Desktop carousel ── */
+
+
+
+/* Desktop carousel */
 @media (min-width: 901px) {
     .carousel-wrapper {
         position: relative;
         overflow: hidden;
-        width: 100%;
     }
     .portfolio-grid {
         display: flex;
         flex-wrap: nowrap;
-        gap: 0;
-        /* override the grid columns */
         grid-template-columns: unset;
-        will-change: transform;
     }
-    .portfolio-grid .art-card {
+    .portfolio-grid > a {
         flex: 0 0 auto;
         width: clamp(280px, 26vw, 460px);
     }
+    .portfolio-grid .art-card { width: 100%; }
     .carousel-zone {
         position: absolute;
         top: 0;
@@ -249,8 +252,14 @@ html.is-animating .transition-fade {
         width: 12%;
         z-index: 10;
     }
-    .carousel-zone--left  { left: 0;  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpolygon points='6,16 22,6 22,26' fill='%23353637'/%3E%3C/svg%3E") 6 16, w-resize; }
-    .carousel-zone--right { right: 0; cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpolygon points='26,16 10,6 10,26' fill='%23353637'/%3E%3C/svg%3E") 26 16, e-resize; }
+    .carousel-zone--left {
+        left: 0;
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpolygon points='8,20 28,8 28,32' fill='%23353637'/%3E%3C/svg%3E") 8 20, w-resize;
+    }
+    .carousel-zone--right {
+        right: 0;
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpolygon points='32,20 12,8 12,32' fill='%23353637'/%3E%3C/svg%3E") 32 20, e-resize;
+    }
 }
 
 /* ── Contact page ── */

@@ -25,7 +25,7 @@
             <div class="carousel-wrapper">
             <div class="carousel-zone carousel-zone--left"></div>
             <div class="portfolio-grid">
-
+                
                     <a href="project/paf-paf.html" style="text-decoration: none; color: inherit;">
                         <div class="art-card">
                             <img src="images/project001/acceuil_01.jpg" alt="PAF PAF !">
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                     </a>
-
+                
                     <a href="project/chaine.html" style="text-decoration: none; color: inherit;">
                         <div class="art-card">
                             <img src="images/project002/acceuil_02.jpg" alt="Flame Path">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </a>
-
+                
                     <a href="project/paf.html" style="text-decoration: none; color: inherit;">
                         <div class="art-card">
                             <img src="images/project003/acceuil_03.jpg" alt="P.A.F">
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                     </a>
-
+                
                     <a href="project/benchy.html" style="text-decoration: none; color: inherit;">
                         <div class="art-card">
                             <img src="images/project004/acceuil_04.jpg" alt="Benchy3D.stl">
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                     </a>
-
+                
                     <a href="project/rectoverso.html" style="text-decoration: none; color: inherit;">
                         <div class="art-card">
                             <img src="images/project005/acceuil_05.jpg" alt="Recto V">
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                     </a>
-
+                
                     <a href="project/concretion-2023.html" style="text-decoration: none; color: inherit;">
                         <div class="art-card">
                             <img src="images/project006/acceuil_06.jpg" alt="Concretion 2023">
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                     </a>
-
+                
                     <a href="project/concretion-2024.html" style="text-decoration: none; color: inherit;">
                         <div class="art-card">
                             <img src="images/project007/acceuil_07.jpg" alt="Concretion 2024">
@@ -88,7 +88,7 @@
                             </div>
                         </div>
                     </a>
-
+                
                     <a href="project/concretion-2025.html" style="text-decoration: none; color: inherit;">
                         <div class="art-card">
                             <img src="images/project008/08_02.JPG" alt="Concretion 2025">
@@ -97,7 +97,7 @@
                             </div>
                         </div>
                     </a>
-
+                
             </div>
             <div class="carousel-zone carousel-zone--right"></div>
             </div>
@@ -109,6 +109,7 @@
 <script>
   const swup = new Swup();
   swup.hooks.on('page:view', initImages);
+  // Defer so Swup has fully painted the new DOM before we query it
   swup.hooks.on('page:view', function() { setTimeout(initCarousel, 0); });
 </script>
 <script>
@@ -120,10 +121,12 @@ function initCarousel() {
     var rightZone = document.querySelector('.carousel-zone--right');
     if (!wrapper || !grid || !leftZone || !rightZone) return;
 
+    // Lerp state
     var current = 0;
     var target  = 0;
     var raf     = null;
 
+    // Reset on every visit
     grid.style.transform = 'translateX(0px)';
 
     function maxOffset() {
@@ -153,6 +156,7 @@ function initCarousel() {
         moveTo(target + dir * w);
     }
 
+    // Clone zones to drop any stale listeners from a previous visit
     var newLeft  = leftZone.cloneNode(true);
     var newRight = rightZone.cloneNode(true);
     leftZone.parentNode.replaceChild(newLeft, leftZone);
@@ -163,6 +167,7 @@ function initCarousel() {
 }
 
 document.addEventListener('DOMContentLoaded', initCarousel);
+</script>
 
 </body>
 </html>

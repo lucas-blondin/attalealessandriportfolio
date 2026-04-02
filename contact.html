@@ -31,10 +31,11 @@
     </main>
 
 <script src="/js/images.js"></script>
+<script src="/js/carousel.js"></script>
 <script src="https://unpkg.com/swup@4"></script>
 <script>
   const swup = new Swup();
-  swup.hooks.on('page:view', initImages);
+  swup.hooks.on('page:view', function() { initImages(); initCarousel(); });
 </script>
 
 </body>
