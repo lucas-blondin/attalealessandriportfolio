@@ -15,48 +15,91 @@
     <main id="swup" class="transition-fade">
     <div class="page-home-bg">
         <header>
-            <h1 class="title">Attale Alessandri</h1>
+            <div class="header-brand">
+                <img src="images/ressource/logo.png" alt="" class="header-logo">
+                <h1 class="title">Attale Alessandri</h1>
+            </div>
             <a href="contact.html" class="contact-nav-link">Contact</a>
         </header>
 
+            <div class="carousel-wrapper">
+            <div class="carousel-zone carousel-zone--left"></div>
             <div class="portfolio-grid">
-                
-                    <a href="project/concretion.html" style="text-decoration: none; color: inherit;">
+
+                    <a href="project/paf-paf.html" style="text-decoration: none; color: inherit;">
                         <div class="art-card">
-                            <img src="images/project001/natto.jpg" alt="concretion">
+                            <img src="images/project001/acceuil_01.jpg" alt="PAF PAF !">
                             <div class="info">
-                                <h3>concretion</h3>
+                                <h3>PAF PAF !</h3>
                             </div>
                         </div>
                     </a>
-                
-                    <a href="project/potterie.html" style="text-decoration: none; color: inherit;">
-                        <div class="art-card">
-                            <img src="images/project002/pot.jpg" alt="potterie">
-                            <div class="info">
-                                <h3>potterie</h3>
-                            </div>
-                        </div>
-                    </a>
-                
-                    <a href="project/rectoverso.html" style="text-decoration: none; color: inherit;">
-                        <div class="art-card">
-                            <img src="images/project003/MG_0523.jpg" alt="recto verso">
-                            <div class="info">
-                                <h3>recto verso</h3>
-                            </div>
-                        </div>
-                    </a>
-                
+
                     <a href="project/chaine.html" style="text-decoration: none; color: inherit;">
                         <div class="art-card">
-                            <img src="images/project004/DSC0435.jpg" alt="chemin de flamme">
+                            <img src="images/project002/acceuil_02.jpg" alt="Flame Path">
                             <div class="info">
-                                <h3>chemin de flamme</h3>
+                                <h3>Flame Path</h3>
                             </div>
                         </div>
                     </a>
-                
+
+                    <a href="project/paf.html" style="text-decoration: none; color: inherit;">
+                        <div class="art-card">
+                            <img src="images/project003/acceuil_03.jpg" alt="P.A.F">
+                            <div class="info">
+                                <h3>P.A.F</h3>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="project/benchy.html" style="text-decoration: none; color: inherit;">
+                        <div class="art-card">
+                            <img src="images/project004/acceuil_04.jpg" alt="Benchy3D.stl">
+                            <div class="info">
+                                <h3>Benchy3D.stl</h3>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="project/rectoverso.html" style="text-decoration: none; color: inherit;">
+                        <div class="art-card">
+                            <img src="images/project005/acceuil_05.jpg" alt="Recto V">
+                            <div class="info">
+                                <h3>Recto V</h3>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="project/concretion-2023.html" style="text-decoration: none; color: inherit;">
+                        <div class="art-card">
+                            <img src="images/project006/acceuil_06.jpg" alt="Concretion 2023">
+                            <div class="info">
+                                <h3>Concretion 2023</h3>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="project/concretion-2024.html" style="text-decoration: none; color: inherit;">
+                        <div class="art-card">
+                            <img src="images/project007/acceuil_07.jpg" alt="Concretion 2024">
+                            <div class="info">
+                                <h3>Concretion 2024</h3>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="project/concretion-2025.html" style="text-decoration: none; color: inherit;">
+                        <div class="art-card">
+                            <img src="images/project008/08_02.JPG" alt="Concretion 2025">
+                            <div class="info">
+                                <h3>Concretion 2025</h3>
+                            </div>
+                        </div>
+                    </a>
+
+            </div>
+            <div class="carousel-zone carousel-zone--right"></div>
             </div>
         </div>
     </main>
@@ -66,7 +109,60 @@
 <script>
   const swup = new Swup();
   swup.hooks.on('page:view', initImages);
+  swup.hooks.on('page:view', function() { setTimeout(initCarousel, 0); });
 </script>
+<script>
+function initCarousel() {
+    if (window.innerWidth <= 900) return;
+    var wrapper   = document.querySelector('.carousel-wrapper');
+    var grid      = document.querySelector('.portfolio-grid');
+    var leftZone  = document.querySelector('.carousel-zone--left');
+    var rightZone = document.querySelector('.carousel-zone--right');
+    if (!wrapper || !grid || !leftZone || !rightZone) return;
+
+    var current = 0;
+    var target  = 0;
+    var raf     = null;
+
+    grid.style.transform = 'translateX(0px)';
+
+    function maxOffset() {
+        return Math.max(0, grid.scrollWidth - wrapper.offsetWidth);
+    }
+
+    function animate() {
+        current += (target - current) * 0.12;
+        grid.style.transform = 'translateX(-' + current + 'px)';
+        if (Math.abs(target - current) > 0.3) {
+            raf = requestAnimationFrame(animate);
+        } else {
+            current = target;
+            grid.style.transform = 'translateX(-' + current + 'px)';
+            raf = null;
+        }
+    }
+
+    function moveTo(val) {
+        target = Math.max(0, Math.min(val, maxOffset()));
+        if (!raf) raf = requestAnimationFrame(animate);
+    }
+
+    function stepByCard(dir) {
+        var card = grid.querySelector('.art-card');
+        var w = card ? card.offsetWidth : 400;
+        moveTo(target + dir * w);
+    }
+
+    var newLeft  = leftZone.cloneNode(true);
+    var newRight = rightZone.cloneNode(true);
+    leftZone.parentNode.replaceChild(newLeft, leftZone);
+    rightZone.parentNode.replaceChild(newRight, rightZone);
+
+    newLeft.addEventListener('click',  function() { stepByCard(-1); });
+    newRight.addEventListener('click', function() { stepByCard(1); });
+}
+
+document.addEventListener('DOMContentLoaded', initCarousel);
 
 </body>
 </html>
